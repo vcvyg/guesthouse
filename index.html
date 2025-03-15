@@ -1,16 +1,325 @@
 <!DOCTYPE html>
-    <html>
-      <head>
-        <title>我的民宿官网</title>
-        <mete name="viewport" content="width=device-width,initial-scale=1.0">
-        <style>
-          body{font-family:Arial;text-align:center;padding:50px;}
-          h1{color:#2c3e50;}
-          img{max-width:100%;height:auto;}
-        </style>
-      </head>
-      <body>
-        <h1>欢迎来到灵山隐舍</h1>
-        <p>网站建设中，敬请期待...</p>
-      </body>
-    </html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蔚蓝城堡 | 威海欧式海景民宿</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sea-blue: #0077b6;
+            --gold: #d4af37;
+        }
+
+        /* 定制海洋主题 */
+        .ocean-theme {
+            border-color: var(--sea-blue) !important;
+        }
+        .badge-pet {
+            background: #ffb703 !important;
+        }
+
+        /* 特色服务图标 */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 1rem;
+        }
+
+        /* 剧本杀专区 */
+        .script-kill {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                        url('images/script-bg.jpg') center/cover;
+            color: white;
+            padding: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 头部大图 -->
+<header class="position-relative">
+    <img src="images/villa-front.jpg" class="w-100" style="height:70vh;object-fit:cover;" alt="民宿外观">
+    <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h1 class="display-1 fw-bold">蔚蓝城堡</h1>
+        <p class="fs-4">当欧式浪漫遇见威海碧海</p>
+        <div class="mt-4">
+            <span class="badge bg-warning me-2">🐾 宠物友好民宿</span>
+            <span class="badge bg-danger me-2">🔍 沉浸式剧本杀</span>
+            <span class="badge bg-primary">🌊 美丽海景随心看</span>
+        </div>
+    </div>
+</header>
+
+<!-- 地理位置 -->
+<section class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h2 class="ocean-theme border-bottom pb-2">🌍 绝佳位置</h2>
+            <div class="mt-4">
+                <p>🏰 地址：威海市环翠区滨海大道188号</p>
+                <p>🚗 交通指引：</p>
+                <ul>
+                    <li>距威海站15分钟车程</li>
+                    <li>威海国际海水浴场步行8分钟</li>
+                    <li>紧邻威海海洋馆（步行3分钟）</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://map.baidu.com/@...." allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 特色房型 -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">🏠 海洋主题房型</h2>
+        <div class="row g-4">
+            <!-- 波塞冬海景套房 -->
+            <div class="col-md-4">
+                <div class="card h-100 ocean-theme">
+                    <img src="images/room1.jpg" class="card-img-top" alt="海景套房">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5>波塞冬海景套房</h5>
+                            <span class="badge bg-success">宠物房</span>
+                        </div>
+                        <p>🛏 2米大床 | 🌊 180°海景阳台 | 65㎡</p>
+                        <div class="text-end">
+                            <span class="h4 text-danger">¥128/晚</span>
+                            <p class="text-muted">含双早+海洋馆门票</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">快捷订房</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 海洋之心豪华房 -->
+            <div class="col-md-4">
+                <div class="card h-100 ocean-theme">
+                    <img src="images/room2.jpg" class="card-img-top" alt="豪华房">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5>海洋之心豪华房</h5>
+                            <span class="badge bg-primary">情侣推荐</span>
+                        </div>
+                        <p>🛏 1.8米大床 | 🛁 独立浴缸 | 50㎡</p>
+                        <div class="text-end">
+                            <span class="h4 text-danger">¥98/晚</span>
+                            <p class="text-muted">含双早+下午茶</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">快捷订房</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 海豚湾亲子房 -->
+            <div class="col-md-4">
+                <div class="card h-100 ocean-theme">
+                    <img src="images/room3.jpg" class="card-img-top" alt="亲子房">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <h5>海豚湾亲子房</h5>
+                            <span class="badge bg-warning">亲子房</span>
+                        </div>
+                        <p>🛏 1.8米大床&&1.5米儿童床 | 🛁 独立浴缸 | 75㎡</p>
+                        <div class="text-end">
+                            <span class="h4 text-danger">¥138/晚</span>
+                            <p class="text-muted">含双早</p>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">快捷订房</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 微信支付模态框 -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">微信支付</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>请使用微信扫描以下二维码完成支付：</p>
+                <img src="images/wechat-qr.png" alt="微信支付二维码" class="img-fluid" style="max-width: 200px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 特色服务 -->
+<section class="container py-5">
+    <h2 class="text-center mb-5">🌟 独家优势</h2>
+    <div class="row text-center">
+        <div class="col-md-3">
+            <img src="images/pet-icon.png" class="feature-icon" alt="宠物服务">
+            <h5>宠物友好</h5>
+            <p>提供：宠物床具 | 托管服务 | 24小时宠物医院</p>
+        </div>
+        <div class="col-md-3">
+            <img src="images/script-icon.png" class="feature-icon" alt="剧本杀">
+            <h5>沉浸式剧本杀</h5>
+            <p>6大主题剧本 | 专业DM带玩 | 古堡实景</p>
+        </div>
+        <div class="col-md-3">
+            <img src="images/sea-icon.png" class="feature-icon" alt="海景">
+            <h5>美丽海景</h5>
+            <p>180°无敌海景 | 私人阳台 | 日出日落尽收眼底</p>
+        </div>
+        <!-- 更多服务... -->
+    </div>
+</section>
+
+<!-- 剧本杀专区 -->
+<section class="script-kill">
+    <div class="container text-center">
+        <h3 class="mb-4">🎭 古堡谜案等你来破</h3>
+        <div class="row">
+            <!-- 海上迷雾 -->
+            <div class="col-md-4">
+            <div class="bg-white text-dark p-3 rounded mb-3">
+                <h5>海上迷雾</h5>
+                <p>时长：3小时 | 人数：6-8人</p>
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#scriptModal1">查看剧本</button>
+            </div>
+            </div>
+            <!-- 古堡幽影 -->
+            <div class="col-md-4">
+            <div class="bg-white text-dark p-3 rounded mb-3">
+                <h5>古堡幽影</h5>
+                <p>时长：4小时 | 人数：5-7人</p>
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#scriptModal2">查看剧本</button>
+            </div>
+            </div>
+            <!-- 深海谜踪 -->
+            <div class="col-md-4">
+            <div class="bg-white text-dark p-3 rounded mb-3">
+                <h5>深海谜踪</h5>
+                <p>时长：5小时 | 人数：4-6人</p>
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#scriptModal3">查看剧本</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- 剧本详情模态框 -->
+    <div class="modal fade" id="scriptModal1" tabindex="-1" aria-labelledby="scriptModal1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white" style="background: rgba(0, 0, 0, 0.8);">
+            <div class="modal-header border-0">
+            <h5 class="modal-title" id="scriptModal1Label">海上迷雾</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p><strong>适合人群：</strong>推理爱好者，团队玩家</p>
+            <p><strong>角色：</strong></p>
+            <ul>
+                <li>船长 | 男 | 45岁</li>
+                <li>侦探 | 女 | 32岁</li>
+                <li>医生 | 男 | 38岁</li>
+                <li>富商 | 女 | 50岁</li>
+            </ul>
+            <p><strong>故事梗概：</strong>一艘豪华游轮在海上失联，船员接连失踪，船上的每个人似乎都隐藏着不可告人的秘密。随着时间的推移，真相逐渐浮出水面，但危险也在步步逼近。</p>
+            <p><strong>任务：</strong>揭开每个人的秘密，找出幕后黑手，阻止更大的灾难。</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="scriptModal2" tabindex="-1" aria-labelledby="scriptModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white" style="background: rgba(0, 0, 0, 0.8);">
+            <div class="modal-header border-0">
+            <h5 class="modal-title" id="scriptModal2Label">古堡幽影</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p><strong>适合人群：</strong>悬疑爱好者，角色扮演玩家</p>
+            <p><strong>角色：</strong></p>
+            <ul>
+                <li>伯爵 | 男 | 60岁</li>
+                <li>女仆 | 女 | 25岁</li>
+                <li>管家 | 男 | 50岁</li>
+                <li>访客 | 女 | 35岁</li>
+            </ul>
+            <p><strong>故事梗概：</strong>一座古老的城堡，流传着幽灵出没的传说。某天夜晚，城堡内的访客接连失踪，诡异的脚步声回荡在走廊中。你需要在迷雾重重的线索中找到真相。</p>
+            <p><strong>任务：</strong>解开古堡的秘密，揭露隐藏的真相，找到失踪的访客。</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="scriptModal3" tabindex="-1" aria-labelledby="scriptModal3Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-white" style="background: rgba(0, 0, 0, 0.8);">
+            <div class="modal-header border-0">
+            <h5 class="modal-title" id="scriptModal3Label">深海谜踪</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p><strong>适合人群：</strong>冒险爱好者，逻辑推理玩家</p>
+            <p><strong>角色：</strong></p>
+            <ul>
+                <li>潜水员 | 男 | 28岁</li>
+                <li>科学家 | 女 | 40岁</li>
+                <li>探险家 | 男 | 35岁</li>
+            </ul>
+            <p><strong>故事梗概：</strong>一支探险队在深海中发现了失落的文明遗迹，但随之而来的却是接连不断的危机。神秘的符号、未知的生物、逐渐减少的氧气，所有的一切都在考验你的智慧与勇气。</p>
+            <p><strong>任务：</strong>破解遗迹中的谜题，揭开失落文明的秘密，并带领团队安全返回。</p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 实景相册 -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5">📸 实景一览</h2>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <img src="images/pool.jpg" class="img-fluid rounded" alt="海景泳池">
+            </div>
+            <div class="col-md-3">
+                <img src="images/lobby.jpg" class="img-fluid rounded" alt="欧式大堂">
+            </div>
+            <!-- 更多图片... -->
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="container py-5">
+        <h2 class="text-center mb-5">📱 联系我们</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <img src="images/xiaohongshu-icon.png" class="feature-icon" alt="小红书">
+                <h5>小红书</h5>
+                <p>@蔚蓝城堡民宿</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/weibo-icon.png" class="feature-icon" alt="微博">
+                <h5>微博</h5>
+                <p>@蔚蓝城堡官方</p>
+            </div>
+            <div class="col-md-4">
+                <img src="images/douyin-icon.png" class="feature-icon" alt="抖音">
+                <h5>抖音</h5>
+                <p>@蔚蓝城堡海景民宿</p>
+            </div>
+        </div>
+    </section>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
