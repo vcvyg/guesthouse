@@ -13,13 +13,12 @@
     
     <style>
         :root {
-            --sea-blue: rgba(0, 119, 182, 0.9); /* 调整透明度 */
-            --gold: #c5a47f; /* 哑光金色 */
-            --sand: #f5f1ee; /* 新增沙滩色 */
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.12); /* 柔和阴影 */
+            --sea-blue: rgba(0, 119, 182, 0.9);
+            --gold: #c5a47f;
+            --sand: #f5f1ee;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         }
 
-        /* === 新增：全局样式 === */
         body {
             font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.6;
@@ -43,34 +42,113 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
+
+        .hero-mask {
+            background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .title-container {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .title-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .features-container {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease 0.5s;
+        }
+
+        .features-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .feature-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
 <!-- 头部大图升级版 -->
 <header class="position-relative overflow-hidden">
-    <!-- 新增：动态遮罩层 -->
-    <div class="hero-mask position-absolute w-100 h-100" style="background: linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);"></div>
+    <div class="hero-mask position-absolute w-100 h-100"></div>
     
-    < img src="images/villa-front.jpg" 
-         class="w-100" 
-         style="height:70vh;object-fit:cover;" 
-         alt="民宿外观"
-         loading="lazy"> <!-- 新增懒加载 -->
+    <picture>
+        <source srcset="images/villa-front.webp" type="image/webp">
+        <source srcset="images/villa-front.jpg" type="image/jpeg">
+        <img src="images/villa-front.jpg" 
+             class="w-100" 
+             style="height:70vh;object-fit:cover;" 
+             alt="民宿外观"
+             loading="lazy">
+    </picture>
     
     <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
-        <!-- 标题动画容器 -->
         <div class="title-container">
             <h1 class="display-1 fw-bold mb-3" style="text-shadow: 0 5px 15px rgba(0,0,0,0.3);">蔚蓝城堡</h1>
-            <p class="fs-4 mb-4">当欧式浪漫遇见威海碧海</p >
-            <div class="mt-4 animate-badges">
-                <span class="badge bg-warning me-2">🐾 宠物友好民宿</span>
-                <span class="badge bg-danger me-2">🔍 沉浸式剧本杀</span>
-                <span class="badge bg-primary">🌊 众多景点随心看</span>
-            </div>
+            <p class="fs-4 mb-4">当欧式浪漫遇见威海碧海</p>
         </div>
     </div>
 </header>
+
+<!-- 酒店特色 -->
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2>酒店特色</h2>
+    </div>
+    <div class="row text-center">
+        <div class="col-md-4 feature-item">
+            <h3>🐾 宠物友好</h3>
+            <p>提供宠物床具、托管服务及24小时宠物医院</p>
+        </div>
+        <div class="col-md-4 feature-item">
+            <h3>🔍 沉浸式剧本杀</h3>
+            <p>6大主题剧本，专业DM带玩，古堡实景</p>
+        </div>
+        <div class="col-md-4 feature-item">
+            <h3>🌊 无敌海景</h3>
+            <p>180°海景，私人阳台，日出日落尽收眼底</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const titleContainer = document.querySelector(".title-container");
+        const featureItems = document.querySelectorAll(".feature-item");
+
+        // 显示标题动画
+        setTimeout(() => {
+            titleContainer.classList.add("visible");
+        }, 500);
+
+        // 滑动显示特色
+        window.addEventListener("scroll", () => {
+            featureItems.forEach((item) => {
+                const scrollPosition = window.scrollY + window.innerHeight;
+                const itemPosition = item.offsetTop;
+
+                if (scrollPosition > itemPosition) {
+                    item.classList.add("visible");
+                }
+            });
+        });
+    });
+</script>
 
 <!-- 地理位置 -->
 <section class="container py-5">
@@ -124,7 +202,7 @@
                                 <span class="h4 text-danger d-block">¥1288/晚</span>
                                 <small class="text-muted">含双早+海洋馆门票</small>
                             </div>
-                            <button class="btn btn-primary w-100 mt-3">立即预订 →</button>
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#paymentModal">立即预订 →</button>
                         </div>
                     </div>
                 </div>
@@ -153,7 +231,7 @@
                                 <span class="h4 text-danger d-block">¥988/晚</span>
                                 <small class="text-muted">含双早+下午茶</small>
                             </div>
-                            <button class="btn btn-primary w-100 mt-3">立即预订 →</button>
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#paymentModal">立即预订 →</button>
                         </div>
                     </div>
                 </div>
@@ -182,7 +260,7 @@
                                 <span class="h4 text-danger d-block">¥1388/晚</span>
                                 <small class="text-muted">含双早</small>
                             </div>
-                            <button class="btn btn-primary w-100 mt-3">立即预订 →</button>
+                            <button class="btn btn-primary w-100 mt-3" data-bs-toggle="modal" data-bs-target="#paymentModal">立即预订 →</button>
                         </div>
                     </div>
                 </div>
@@ -190,6 +268,27 @@
         </div>
     </div>
 </section>
+
+<!-- 微信支付模态框 -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">微信支付</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>请使用微信扫描以下二维码完成支付：</p>
+                <img src="images/wechat-qr.png" alt="微信支付二维码" class="img-fluid" style="max-width: 200px;">
+                <p class="mt-3 text-muted">支付完成后请点击“确认支付”按钮。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确认支付</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
     .scale-on-hover {
@@ -215,52 +314,85 @@
         backdrop-filter: blur(5px);
     }
     /* === 移动端适配 === */
-@media (max-width: 768px) {
-    header h1.display-1 {
-        font-size: 2.5rem !important;
+    @media (max-width: 768px) {
+        header h1.display-1 {
+            font-size: 2.5rem !important;
+        }
+        
+        .card {
+            margin-bottom: 1.5rem;
+        }
+        
+        .features span {
+            display: block !important;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-box {
+            padding: 1rem !important;
+        }
+        
+        .script-kill h3 {
+            font-size: 1.5rem;
+        }
     }
-    
-    .card {
-        margin-bottom: 1.5rem;
-    }
-    
-    .features span {
-        display: block !important;
-        margin-bottom: 0.5rem;
-    }
-    
-    .price-box {
-        padding: 1rem !important;
-    }
-    
-    .script-kill h3 {
-        font-size: 1.5rem;
-    }
-}
 </style>
 
-<!-- 特色服务 -->
+<!-- 特色服务滑动展示 -->
 <section class="container py-5">
     <h2 class="text-center mb-5">🌟 独家优势</h2>
-    <div class="row text-center">
-        <div class="col-md-3">
-            <img src="images/pet-icon.png" class="feature-icon" alt="宠物服务">
-            <h5>宠物友好</h5>
-            <p>提供：宠物床具 | 托管服务 | 24小时宠物医院</p>
+    <div class="row">
+        <div class="col-md-6 d-flex align-items-center">
+            <div id="featureText" class="text-center">
+                <h3 class="mb-3">宠物友好</h3>
+                <p>提供：宠物床具 | 托管服务 | 24小时宠物医院</p>
+            </div>
         </div>
-        <div class="col-md-3">
-            <img src="images/script-icon.png" class="feature-icon" alt="剧本杀">
-            <h5>沉浸式剧本杀</h5>
-            <p>6大主题剧本 | 专业DM带玩 | 古堡实景</p>
+        <div class="col-md-6">
+            <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/pet-icon.png" class="d-block w-100 rounded" alt="宠物服务">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/script-icon.png" class="d-block w-100 rounded" alt="剧本杀">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/sea-icon.png" class="d-block w-100 rounded" alt="海景">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
-        <div class="col-md-3">
-            <img src="images/sea-icon.png" class="feature-icon" alt="海景">
-            <h5>美丽海景</h5>
-            <p>180°无敌海景 | 私人阳台 | 日出日落尽收眼底</p>
-        </div>
-        <!-- 更多服务... -->
     </div>
 </section>
+
+<script>
+    const featureTexts = [
+        { title: "宠物友好", description: "提供：宠物床具 | 托管服务 | 24小时宠物医院" },
+        { title: "沉浸式剧本杀", description: "6大主题剧本 | 专业DM带玩 | 古堡实景" },
+        { title: "美丽海景", description: "180°无敌海景 | 私人阳台 | 日出日落尽收眼底" }
+    ];
+
+    const featureTextElement = document.getElementById("featureText");
+    const carousel = document.getElementById("featureCarousel");
+
+    carousel.addEventListener("slide.bs.carousel", (event) => {
+        const nextIndex = event.to;
+        const { title, description } = featureTexts[nextIndex];
+        featureTextElement.innerHTML = `
+            <h3 class="mb-3">${title}</h3>
+            <p>${description}</p>
+        `;
+    });
+</script>
 
 <!-- 剧本杀专区 -->
 <section class="script-kill">
@@ -366,18 +498,61 @@
 
     <!-- 实景相册 -->
     <section class="container py-5">
-        <h2 class="text-center mb-5">📸 实景一览</h2>
-        <div class="row g-3">
-            <div class="col-md-3">
-                <img src="images/pool.jpg" class="img-fluid rounded" alt="海景泳池">
+        <h2 class="text-center mb-5">📸 缘分让我们相遇</h2>
+        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/pool.jpg" class="d-block w-100 rounded" alt="海景泳池">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>海景泳池</h5>
+                        <p>享受无边泳池与海天一色的美景。</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/lobby.jpg" class="d-block w-100 rounded" alt="欧式大堂">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>欧式大堂</h5>
+                        <p>感受奢华与优雅的完美结合。</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/house.jpg" class="d-block w-100 rounded" alt="房间内部">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>房间内部</h5>
+                        <p>温馨舒适的房间，尽享家的感觉。</p>
+                    </div>
+                </div>
+                <div class="carousel-item"></div>
+                    <img src="images/beach.jpg" class="d-block w-100 rounded" alt="海滩风光">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>海滩风光</h5>
+                        <p>漫步在细腻的沙滩，感受海风拂面。</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/dining.jpg" class="d-block w-100 rounded" alt="餐厅美食">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>餐厅美食</h5>
+                        <p>品尝地道美食，享受味蕾的盛宴。</p>
+                    </div>
+                </div>
+                <!-- 更多图片占位 -->
+                <div class="carousel-item">
+                    <img src="images/placeholder.jpg" class="d-block w-100 rounded" alt="更多图片">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>更多图片</h5>
+                        <p>后续补充更多精彩瞬间。</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <img src="images/lobby.jpg" class="img-fluid rounded" alt="欧式大堂">
-            </div>
-             <div class="col-md-3">
-                <img src="images/house.jpg" class="img-fluid rounded" alt="欧式大堂">
-            </div>
-            <!-- 更多图片... -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
 
